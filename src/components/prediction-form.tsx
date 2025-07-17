@@ -31,6 +31,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { predictHousePrice, PredictHousePriceInput } from "@/ai/flows/predict-price-flow";
 
 const predictionFormSchema = z.object({
   bedrooms: z.number().min(1, "Must be at least 1").max(10, "Cannot exceed 10"),
@@ -60,25 +61,40 @@ export function PredictionForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof predictionFormSchema>) {
+  async function onSubmit(values: z.infer<typeof predictionFormSchema>) {
     setLoading(true);
     setPrediction(null);
-    const submissionValues = {
+    
+    const submissionValues: PredictHousePriceInput = {
         ...values,
         yearBuilt: values.yearBuilt.getFullYear(),
-    }
+    };
+    
     console.log(submissionValues);
 
-    // Simulate API call
-    setTimeout(() => {
-      const randomPrice = (Math.random() * (1500000 - 300000) + 300000).toFixed(0);
-      setPrediction(new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Number(randomPrice)));
-      setLoading(false);
+    try {
+      const result = await predictHousePrice(submissionValues);
+      const formattedPrice = new Intl.NumberFormat('en-US', { 
+        style: 'currency', 
+        currency: 'USD', 
+        maximumFractionDigits: 0 
+      }).format(result.predictedPrice);
+      
+      setPrediction(formattedPrice);
       toast({
         title: "Prediction Complete!",
         description: "Your estimated property value is ready.",
       });
-    }, 2000);
+    } catch (error) {
+      console.error("Prediction failed:", error);
+      toast({
+        variant: "destructive",
+        title: "Prediction Failed",
+        description: "Could not generate a price prediction. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
