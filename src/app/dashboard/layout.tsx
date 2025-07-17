@@ -24,12 +24,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Bell, Home, LineChart, LogOut, Settings, User } from 'lucide-react'
+import { Bell, Home, LogOut, Settings, User } from 'lucide-react'
 import { Logo } from '@/components/logo'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
   { href: '/dashboard/settings', label: 'Settings', icon: Settings },
 ]
 
@@ -100,8 +99,10 @@ export default function DashboardLayout({
                   <span>Profile</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
+                    <Link href="/dashboard/settings" className="flex items-center w-full">
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>Settings</span>
+                    </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
