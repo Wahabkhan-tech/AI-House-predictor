@@ -31,7 +31,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { predictHousePrice, PredictHousePriceInput } from "@/ai/flows/predict-price-flow";
+import { predictHousePrice } from "@/ai/flows/predict-price-flow";
+import type { PredictHousePriceInput } from "@/ai/schemas/house-price-schema";
 
 const predictionFormSchema = z.object({
   bedrooms: z.number().min(1, "Must be at least 1").max(10, "Cannot exceed 10"),

@@ -3,27 +3,16 @@
  * @fileOverview A house price prediction AI agent.
  *
  * - predictHousePrice - A function that handles the house price prediction process.
- * - PredictHousePriceInput - The input type for the predictHousePrice function.
- * - PredictHousePriceOutput - The return type for the predictHousePrice function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { 
+    PredictHousePriceInputSchema, 
+    PredictHousePriceOutputSchema,
+    PredictHousePriceInput,
+    PredictHousePriceOutput 
+} from '@/ai/schemas/house-price-schema';
 
-export const PredictHousePriceInputSchema = z.object({
-  bedrooms: z.number().describe('The number of bedrooms.'),
-  bathrooms: z.number().describe('The number of bathrooms.'),
-  squareFootage: z.number().describe('The total square footage of the house.'),
-  zipCode: z.string().describe('The 5-digit zip code of the property.'),
-  propertyType: z.enum(['single_family', 'condo', 'townhouse']).describe('The type of property.'),
-  yearBuilt: z.number().describe('The year the house was built.'),
-});
-export type PredictHousePriceInput = z.infer<typeof PredictHousePriceInputSchema>;
-
-const PredictHousePriceOutputSchema = z.object({
-  predictedPrice: z.number().describe('The predicted market price of the house in USD.'),
-});
-export type PredictHousePriceOutput = z.infer<typeof PredictHousePriceOutputSchema>;
 
 export async function predictHousePrice(input: PredictHousePriceInput): Promise<PredictHousePriceOutput> {
   return predictHousePriceFlow(input);
