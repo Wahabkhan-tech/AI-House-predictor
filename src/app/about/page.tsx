@@ -13,11 +13,11 @@ const teamMembers = [
 
 export default function AboutPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-1">
         <section className="relative py-20 md:py-32">
-           <div className="absolute inset-x-0 top-0 h-64 gradient-background opacity-20" />
+           <div className="absolute inset-0 -z-10 gradient-background opacity-70" />
            <div className="container mx-auto px-4 md:px-6 relative">
             <div className="mx-auto max-w-3xl text-center animate-fade-in">
               <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl gradient-text">

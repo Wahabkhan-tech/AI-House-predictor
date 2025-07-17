@@ -28,13 +28,15 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isHomePage = pathname === '/';
+
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "border-b bg-background/80 backdrop-blur-sm" : "bg-transparent"
+       isScrolled ? "border-b bg-background/80 backdrop-blur-sm" : (isHomePage ? "bg-transparent" : "bg-background")
     )}>
       <div className="container mx-auto flex h-16 items-center">
-        <Logo className={isScrolled ? "" : "text-white"} />
+        <Logo />
         <nav className="hidden md:ml-6 md:flex md:items-center md:gap-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -42,25 +44,25 @@ export function SiteHeader() {
               href={link.href}
               className={cn(
                 "transition-colors hover:text-primary",
-                pathname === link.href ? (isScrolled ? "text-primary" : "text-white") : (isScrolled ? "text-foreground/60" : "text-white/80")
+                pathname === link.href ? "text-primary" : "text-foreground/60"
               )}
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="ml-auto hidden items-center md:flex">
-          <Button variant="ghost" asChild className={cn(isScrolled ? "text-foreground" : "text-white hover:bg-white/10 hover:text-white")}>
+        <div className="ml-auto hidden items-center space-x-2 md:flex">
+          <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild className={cn(!isScrolled && "bg-white text-primary hover:bg-gray-200")}>
+          <Button asChild>
             <Link href="/signup">Sign Up</Link>
           </Button>
         </div>
         <div className="ml-auto md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className={cn(isScrolled ? "text-foreground" : "text-white hover:bg-white/10 hover:text-white")}>
+              <Button variant="ghost" size="icon">
                 <Menu />
               </Button>
             </SheetTrigger>

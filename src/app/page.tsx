@@ -3,49 +3,13 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Home } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
-
-const ParticleField = () => {
-  const [particles, setParticles] = React.useState<Array<{ id: number; style: React.CSSProperties }>>([]);
-
-  React.useEffect(() => {
-    const newParticles = Array.from({ length: 50 }).map((_, i) => ({
-      id: i,
-      style: {
-        position: 'absolute',
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        width: `${Math.random() * 3 + 1}px`,
-        height: `${Math.random() * 3 + 1}px`,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        borderRadius: '50%',
-        animation: `float ${Math.random() * 10 + 5}s ease-in-out infinite`,
-        animationDelay: `${Math.random() * 5}s`,
-      } as React.CSSProperties,
-    }));
-    setParticles(newParticles);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 z-0 overflow-hidden">
-      <style>
-        {`
-          @keyframes float {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
-            100% { transform: translate(0, 0); }
-          }
-        `}
-      </style>
-      {particles.map(p => <div key={p.id} style={p.style} />)}
-    </div>
-  );
-};
+import { cn } from '@/lib/utils';
 
 export default function HomePage() {
   const features = [
@@ -67,25 +31,31 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-1">
-        <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
-          <div className="absolute inset-0 gradient-background" />
-          <ParticleField />
-          <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white">
+        <section className="relative w-full py-32 md:py-48 lg:py-56">
+          <div className="absolute inset-0 -z-10 gradient-background opacity-70" />
+          <div className="container mx-auto px-4 md:px-6 relative text-center">
             <div className="animate-fade-in space-y-4">
-              <h1 className="font-headline text-5xl font-bold tracking-tighter md:text-7xl">
+              <h1 className="font-headline text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl gradient-text">
                 The Future of Real Estate is Here.
               </h1>
-              <p className="mx-auto max-w-2xl text-lg text-blue-100">
+              <p className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl">
                 AI House Price Predictor gives you the confidence to buy, sell, or invest by providing hyper-accurate valuations powered by artificial intelligence.
               </p>
-              <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
-                <Link href="/signup">
-                  Get Started Free <ArrowRight className="ml-2" />
-                </Link>
-              </Button>
+              <div className="flex justify-center gap-4">
+                <Button asChild size="lg">
+                  <Link href="/signup">
+                    Get Started Free <ArrowRight className="ml-2" />
+                  </Link>
+                </Button>
+                 <Button asChild size="lg" variant="outline">
+                  <Link href="#features">
+                    Learn More
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
