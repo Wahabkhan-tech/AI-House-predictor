@@ -30,7 +30,7 @@ import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { predictHousePrice } from "@/ai/flows/predict-price-flow";
 import type { PredictHousePriceInput } from "@/ai/schemas/house-price-schema";
 import { Switch } from "./ui/switch";
@@ -94,7 +94,7 @@ export function PredictionForm({ onPredictionComplete }: PredictionFormProps) {
       setPrediction(formattedPrice);
       onPredictionComplete({
         id: new Date().toISOString(),
-        inputs: submissionValues,
+        inputs: values,
         prediction: formattedPrice,
         timestamp: new Date(),
       });
