@@ -29,9 +29,12 @@ Analyze the following property details and provide a realistic price prediction 
 - Property Type: {{propertyType}}
 - Location (Zip Code): {{zipCode}}
 - Square Footage: {{squareFootage}} sq ft
+- Lot Size: {{lotSize}} sq ft
 - Bedrooms: {{bedrooms}}
 - Bathrooms: {{bathrooms}}
 - Year Built: {{yearBuilt}}
+- Has Garage: {{#if hasGarage}}Yes{{else}}No{{/if}}
+- Has Pool: {{#if hasPool}}Yes{{else}}No{{/if}}
 
 Based on this information, calculate the estimated market value. Return only the predicted price.`,
 });
