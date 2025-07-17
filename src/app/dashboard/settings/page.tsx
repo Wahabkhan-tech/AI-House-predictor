@@ -8,12 +8,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { useToast } from "@/hooks/use-toast"
-import { BrainCircuit, Moon, Sun } from "lucide-react"
+import { BrainCircuit, Moon, Sun, EyeOff } from "lucide-react"
 import { useTheme } from "next-themes"
+import * as React from "react"
 
 export default function SettingsPage() {
   const { toast } = useToast()
   const { setTheme, theme } = useTheme()
+  const [showThemeToggle, setShowThemeToggle] = React.useState(true)
 
   const handlePasswordChange = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -48,14 +50,21 @@ export default function SettingsPage() {
                 Select between light and dark mode.
               </span>
             </Label>
-             <div className="flex items-center space-x-2">
-              <Sun className="h-5 w-5" />
-              <Switch
-                id="theme-switch"
-                checked={theme === "dark"}
-                onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
-              />
-              <Moon className="h-5 w-5" />
+            <div className="flex items-center space-x-2">
+                {showThemeToggle && (
+                    <div className="flex items-center space-x-2">
+                        <Sun className="h-5 w-5" />
+                        <Switch
+                            id="theme-switch"
+                            checked={theme === "dark"}
+                            onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                        />
+                        <Moon className="h-5 w-5" />
+                    </div>
+                )}
+                <Button variant="ghost" size="icon" onClick={() => setShowThemeToggle(!showThemeToggle)}>
+                    <EyeOff className="h-5 w-5" />
+                </Button>
             </div>
           </div>
         </CardContent>
