@@ -5,23 +5,17 @@ import Image from "next/image";
 function DashboardBackground() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      <Image
-        src="https://placehold.co/1920x1080.png"
-        alt="Abstract background"
-        data-ai-hint="house blueprint"
-        fill
-        className="object-cover opacity-5"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 to-background" />
+      <div className="absolute inset-0 gradient-background" />
     </div>
   )
 }
 
 export default function DashboardPage() {
   return (
-    <div className="container mx-auto relative">
+    <div className="relative">
       <DashboardBackground />
-        <Card className="relative overflow-hidden border-none shadow-none bg-transparent md:border md:shadow-sm md:bg-card/80 backdrop-blur-sm">
+      <div className="space-y-8">
+         <Card className="relative overflow-hidden bg-card/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="font-headline text-2xl">House Price Prediction</CardTitle>
             <CardDescription>Fill in the details below to get an AI-powered price estimate.</CardDescription>
@@ -30,6 +24,7 @@ export default function DashboardPage() {
             <PredictionForm />
           </CardContent>
         </Card>
+      </div>
     </div>
   );
 }

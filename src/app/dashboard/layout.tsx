@@ -24,8 +24,9 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Bell, Home, LogOut, Settings, User } from 'lucide-react'
+import { Bell, Home, LayoutGrid, LogOut, Search, Settings, User } from 'lucide-react'
 import { Logo } from '@/components/logo'
+import { Input } from '@/components/ui/input'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
@@ -72,12 +73,17 @@ export default function DashboardLayout({
       </Sidebar>
 
       <SidebarInset>
-        <header className="flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
+        <header className="flex h-16 items-center justify-between border-b bg-background px-4 md:px-8">
           <div className="flex items-center gap-4">
             <SidebarTrigger className="md:hidden" />
-            <h1 className="text-xl font-semibold font-headline">Dashboard</h1>
+            <h1 className="text-xl font-semibold">Dashboard</h1>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-1 items-center justify-end gap-4">
+             <div className="relative w-full max-w-sm">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Search anything..." className="pl-9" />
+            </div>
+            <Button>Create</Button>
             <Button variant="ghost" size="icon">
               <Bell className="h-5 w-5" />
               <span className="sr-only">Notifications</span>
@@ -113,7 +119,7 @@ export default function DashboardLayout({
             </DropdownMenu>
           </div>
         </header>
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-8">
           {children}
         </main>
       </SidebarInset>
