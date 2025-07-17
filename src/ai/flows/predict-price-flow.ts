@@ -9,8 +9,8 @@ import {ai} from '@/ai/genkit';
 import { 
     PredictHousePriceInputSchema, 
     PredictHousePriceOutputSchema,
-    PredictHousePriceInput,
-    PredictHousePriceOutput 
+    type PredictHousePriceInput,
+    type PredictHousePriceOutput 
 } from '@/ai/schemas/house-price-schema';
 
 
