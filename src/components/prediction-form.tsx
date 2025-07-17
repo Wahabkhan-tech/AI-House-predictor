@@ -94,7 +94,10 @@ export function PredictionForm({ onPredictionComplete }: PredictionFormProps) {
       setPrediction(formattedPrice);
       onPredictionComplete({
         id: new Date().toISOString(),
-        inputs: values,
+        inputs: {
+            ...values,
+            yearBuilt: values.yearBuilt.getFullYear(),
+        },
         prediction: formattedPrice,
         timestamp: new Date(),
       });

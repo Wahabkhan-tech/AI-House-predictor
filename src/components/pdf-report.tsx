@@ -5,10 +5,11 @@ import type { predictionFormSchema } from "./prediction-form";
 import { Logo } from "./logo";
 import { format } from "date-fns";
 
-type Prediction = z.infer<typeof predictionFormSchema>;
+type FormValues = z.infer<typeof predictionFormSchema>;
+
 type HistoryItem = {
     id: string;
-    inputs: Prediction;
+    inputs: FormValues & { yearBuilt: number };
     prediction: string;
     timestamp: Date;
 };
@@ -60,7 +61,7 @@ export function PdfReport({ item }: { item: HistoryItem }) {
                         <div>
                             <DetailItem label="Bedrooms" value={inputs.bedrooms} />
                             <DetailItem label="Bathrooms" value={inputs.bathrooms} />
-                            <DetailItem label="Year Built" value={inputs.yearBuilt.getFullYear()} />
+                            <DetailItem label="Year Built" value={inputs.yearBuilt} />
                             <DetailItem label="Has Garage" value={inputs.hasGarage} />
                             <DetailItem label="Has Pool" value={inputs.hasPool} />
                         </div>
