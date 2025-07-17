@@ -1,6 +1,5 @@
 import { PredictionForm } from "@/components/prediction-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 
 function DashboardBackground() {
   return (
