@@ -13,6 +13,7 @@ import {
   SidebarInset,
   SidebarTrigger,
   SidebarFooter,
+  SidebarSeparator,
 } from '@/components/ui/sidebar'
 import {
   DropdownMenu,
@@ -24,9 +25,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Bell, Home, LayoutGrid, LogOut, Search, Settings, User } from 'lucide-react'
+import { Bell, Home, LogOut, MoreVertical, Search, Settings, User } from 'lucide-react'
 import { Logo } from '@/components/logo'
 import { Input } from '@/components/ui/input'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: Home },
@@ -38,17 +41,24 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname();
+
   return (
     <SidebarProvider>
       <Sidebar>
-        <SidebarHeader>
+        <SidebarHeader className="items-center">
           <Logo />
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarSeparator />
+        <SidebarContent className="p-4">
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton asChild tooltip={item.label}>
+                <SidebarMenuButton 
+                  asChild 
+                  tooltip={item.label}
+                  isActive={pathname === item.href}
+                >
                   <Link href={item.href}>
                     <item.icon />
                     <span>{item.label}</span>
@@ -58,17 +68,44 @@ export default function DashboardLayout({
             ))}
           </SidebarMenu>
         </SidebarContent>
+        <SidebarSeparator />
         <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                    <Link href="/login">
-                        <LogOut />
-                        <span>Logout</span>
+           <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex items-center gap-2 p-2 rounded-md hover:bg-sidebar-accent cursor-pointer">
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="person face" />
+                      <AvatarFallback>U</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 overflow-hidden group-data-[collapsible=icon]:hidden">
+                      <p className="font-semibold text-sm truncate">Sierra Hewitt</p>
+                      <p className="text-xs text-muted-foreground truncate">sierra@example.com</p>
+                    </div>
+                    <MoreVertical className="h-5 w-5 group-data-[collapsible=icon]:hidden" />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                    <Link href="/dashboard/settings" className="flex items-center w-full">
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>Settings</span>
                     </Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href="/login" className="flex items-center w-full">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </SidebarFooter>
       </Sidebar>
 
@@ -88,9 +125,9 @@ export default function DashboardLayout({
               <Bell className="h-5 w-5" />
               <span className="sr-only">Notifications</span>
             </Button>
-            <DropdownMenu>
+             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full md:hidden">
                   <Avatar>
                     <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="person face" />
                     <AvatarFallback>U</AvatarFallback>
@@ -112,8 +149,10 @@ export default function DashboardLayout({
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
+                  <Link href="/login" className="flex items-center w-full">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
