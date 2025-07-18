@@ -1,3 +1,4 @@
+
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -94,7 +95,7 @@ export function PredictionForm({ onPredictionComplete }: PredictionFormProps) {
       setPrediction(formattedPrice);
       onPredictionComplete({
         id: new Date().toISOString(),
-        inputs: {
+        inputs: { // Pass the original form values, converting year to number
             ...values,
             yearBuilt: values.yearBuilt.getFullYear(),
         },
