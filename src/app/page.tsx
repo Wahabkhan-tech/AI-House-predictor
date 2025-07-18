@@ -72,7 +72,7 @@ export default function HomePage() {
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
               {features.map((feature, index) => (
-                <Card key={index} className="animate-on-scroll transform-gpu transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                <Card key={index} className="animate-on-scroll transform-gpu transition-all duration-500 hover:-translate-y-2 hover:shadow-xl bg-card/80 backdrop-blur-sm">
                   <CardHeader className="flex flex-row items-center gap-4">
                     <div className="rounded-full bg-primary/10 p-3">
                       <feature.icon className="h-6 w-6 text-primary" />
@@ -88,7 +88,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-muted py-12 md:py-24">
+        <section className="py-12 md:py-24 m-4 md:m-8 rounded-2xl overflow-hidden relative gradient-background opacity-90">
           <div className="container mx-auto grid items-center gap-6 px-4 md:grid-cols-2 md:px-6">
             <div className="animate-on-scroll space-y-4">
               <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">

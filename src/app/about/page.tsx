@@ -16,7 +16,7 @@ export default function AboutPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-1">
-        <section className="relative py-20 md:py-32">
+        <section className="relative py-20 md:py-32 m-4 md:m-8 rounded-2xl overflow-hidden">
            <div className="absolute inset-0 -z-10 gradient-background opacity-70" />
            <div className="container mx-auto px-4 md:px-6 relative">
             <div className="mx-auto max-w-3xl text-center animate-fade-in">
@@ -30,7 +30,7 @@ export default function AboutPage() {
            </div>
         </section>
 
-        <section className="bg-muted py-20 md:py-32">
+        <section className="py-20 md:py-32 m-4 md:m-8 rounded-2xl gradient-background opacity-90">
           <div className="container mx-auto px-4 md:px-6">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
@@ -42,7 +42,7 @@ export default function AboutPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {teamMembers.map((member) => (
-                <Card key={member.name} className="animate-on-scroll text-center transform-gpu transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                <Card key={member.name} className="animate-on-scroll text-center transform-gpu transition-all duration-500 hover:-translate-y-2 hover:shadow-xl bg-card/80 backdrop-blur-sm">
                   <CardHeader className="items-center">
                     <Avatar className="h-24 w-24">
                       <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.hint} />
