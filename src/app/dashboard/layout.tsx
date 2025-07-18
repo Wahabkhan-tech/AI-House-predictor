@@ -57,7 +57,7 @@ export default function DashboardLayout({
                 <SidebarMenuButton 
                   asChild 
                   tooltip={item.label}
-                  isActive={pathname === item.href}
+                  isActive={pathname === item.href || (item.href === '/dashboard/settings' && pathname.startsWith('/dashboard/settings'))}
                 >
                   <Link href={item.href}>
                     <item.icon />
@@ -87,18 +87,20 @@ export default function DashboardLayout({
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/settings/profile" className="flex items-center w-full">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                     <Link href="/dashboard/settings" className="flex items-center w-full">
                         <Settings className="mr-2 h-4 w-4" />
                         <span>Settings</span>
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/login" className="flex items-center w-full">
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>
@@ -137,18 +139,20 @@ export default function DashboardLayout({
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
+                <DropdownMenuItem asChild>
+                   <Link href="/dashboard/settings/profile" className="flex items-center w-full">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                     <Link href="/dashboard/settings" className="flex items-center w-full">
                         <Settings className="mr-2 h-4 w-4" />
                         <span>Settings</span>
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/login" className="flex items-center w-full">
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>

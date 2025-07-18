@@ -36,22 +36,24 @@ export function SiteHeader() {
        isScrolled ? "border-b bg-background/80 backdrop-blur-sm" : (isHomePage ? "bg-transparent" : "bg-background")
     )}>
       <div className="container mx-auto flex h-16 items-center">
-        <Logo />
-        <nav className="hidden md:ml-6 md:flex md:items-center md:gap-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "transition-colors hover:text-primary",
-                pathname === link.href ? "text-primary" : "text-foreground/60"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="ml-auto hidden items-center space-x-2 md:flex">
+        <Logo layout="horizontal" />
+        <div className="flex-1 flex justify-center">
+          <nav className="hidden md:flex md:items-center md:gap-6 text-sm font-medium">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "transition-colors hover:text-primary",
+                  pathname === link.href ? "text-primary" : "text-foreground/60"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="hidden items-center space-x-2 md:flex">
           <Button variant="ghost" asChild>
             <Link href="/login">Login</Link>
           </Button>
@@ -59,7 +61,7 @@ export function SiteHeader() {
             <Link href="/signup">Sign Up</Link>
           </Button>
         </div>
-        <div className="ml-auto md:hidden">
+        <div className="md:hidden ml-auto">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
