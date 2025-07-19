@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const teamMembers = [
-  { name: "Jane Doe", role: "CEO & Founder", avatar: "https://placehold.co/100x100.png", hint: "woman portrait" },
-  { name: "John Smith", role: "Lead Data Scientist", avatar: "https://placehold.co/100x100.png", hint: "man portrait" },
-  { name: "Emily White", role: "Head of Product", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
-  { name: "Michael Brown", role: "Senior Software Engineer", avatar: "https://placehold.co/100x100.png", hint: "man face" },
+  { name: "Abdul Wahab", role: "Front End", avatar: "https://placehold.co/100x100.png", hint: "man portrait" },
+  { name: "Muhammed Haseeb", role: "Back End", avatar: "https://placehold.co/100x100.png", hint: "man portrait" },
+  { name: "Aimal Siddiqui", role: "Documentation", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
+  { name: "Anher Siddiqui", role: "AI Model", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
 ];
 
 export default function AboutPage() {
@@ -46,7 +46,7 @@ export default function AboutPage() {
                   <CardHeader className="items-center">
                     <Avatar className="h-24 w-24">
                       <AvatarImage src={member.avatar} alt={member.name} data-ai-hint={member.hint} />
-                      <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                      <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                     </Avatar>
                   </CardHeader>
                   <CardContent>

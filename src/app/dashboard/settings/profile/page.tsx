@@ -8,14 +8,19 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Upload } from "lucide-react"
 import * as React from "react"
+import { UserContext } from "../../layout"
 
 export default function SettingsProfilePage() {
   const { toast } = useToast()
+  const { user, setUser } = React.useContext(UserContext)
+  
   const fileInputRef = React.useRef<HTMLInputElement>(null)
-  const [avatar, setAvatar] = React.useState("https://placehold.co/100x100.png")
+  const [name, setName] = React.useState(user.name)
+  const [email, setEmail] = React.useState(user.email)
 
   const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setUser(prev => ({ ...prev, name, email }))
     toast({
       title: "Profile Updated",
       description: "Your profile information has been successfully saved.",
@@ -27,7 +32,7 @@ export default function SettingsProfilePage() {
       const file = e.target.files[0]
       const reader = new FileReader()
       reader.onloadend = () => {
-        setAvatar(reader.result as string)
+        setUser(prev => ({ ...prev, avatar: reader.result as string }))
         toast({
             title: "Avatar Updated",
             description: "Your new avatar has been set."
@@ -49,8 +54,8 @@ export default function SettingsProfilePage() {
         <form onSubmit={handleProfileUpdate} className="space-y-6">
           <div className="flex items-center space-x-4">
             <Avatar className="h-20 w-20">
-              <AvatarImage src={avatar} data-ai-hint="person face" />
-              <AvatarFallback>SH</AvatarFallback>
+              <AvatarImage src={user.avatar} data-ai-hint="person face" />
+              <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
               <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>
@@ -69,11 +74,11 @@ export default function SettingsProfilePage() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" defaultValue="Sierra Hewitt" />
+            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" defaultValue="sierra@example.com" />
+            <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <Button type="submit">Update Profile</Button>
         </form>
