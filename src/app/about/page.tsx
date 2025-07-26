@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const teamMembers = [
   { name: "Abdul Wahab", role: "Front End", avatar: "https://placehold.co/100x100.png", hint: "man portrait" },
   { name: "Muhammed Haseeb", role: "Back End", avatar: "https://placehold.co/100x100.png", hint: "man portrait" },
-  { name: "Aimal Siddiqui", role: "Documentation", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
+  { name: "Aimal Siddiqui", role: "Research & Documentation", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
   { name: "Anher Siddiqui", role: "AI Model", avatar: "https://placehold.co/100x100.png", hint: "woman face" },
 ];
 

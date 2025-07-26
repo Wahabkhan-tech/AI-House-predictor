@@ -81,7 +81,7 @@ export default function ContactPage() {
                         <div className="space-y-4">
                             <div className="flex items-center gap-4">
                                 <Mail className="h-5 w-5 text-primary" />
-                                <span className="text-muted-foreground">contact@aihousepredictor.com</span>
+                                <span className="text-muted-foreground">contact@homeworthai.com</span>
                             </div>
                         </div>
                         <div className="flex space-x-4">

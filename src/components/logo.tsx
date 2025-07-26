@@ -11,7 +11,7 @@ export function Logo({ className, layout = 'vertical', ...props }: { className?:
               <Home className="h-6 w-6 text-primary" {...props} />
           </div>
           <span className="font-headline text-lg font-semibold leading-tight gradient-text">
-              AI House Predictor
+              Home Worth AI
           </span>
        </Link>
     )

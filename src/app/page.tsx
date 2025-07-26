@@ -42,7 +42,7 @@ export default function HomePage() {
                 The Future of Real Estate is Here.
               </h1>
               <p className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl">
-                AI House Price Predictor gives you the confidence to buy, sell, or invest by providing hyper-accurate valuations powered by artificial intelligence.
+                Home Worth AI gives you the confidence to buy, sell, or invest by providing hyper-accurate valuations powered by artificial intelligence.
               </p>
               <div className="flex justify-center gap-4">
                 <Button asChild size="lg">

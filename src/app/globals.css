@@ -97,10 +97,10 @@
 
 @layer utilities {
   .gradient-background {
-    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-violet-100;
+    background: linear-gradient(135deg, hsla(var(--primary), 0.1) 0%, hsla(var(--secondary), 0.05) 50%, hsla(var(--background), 1) 100%);
   }
   .dark .gradient-background {
-    @apply bg-gradient-to-br from-gray-900/80 via-blue-950/40 to-violet-950/60;
+    background: linear-gradient(135deg, hsla(var(--primary), 0.15) 0%, hsla(var(--secondary), 0.1) 40%, hsla(var(--background), 1) 80%);
   }
   .gradient-text {
     @apply bg-gradient-to-r from-blue-500 to-violet-600 bg-clip-text text-transparent;
